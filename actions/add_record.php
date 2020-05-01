@@ -30,6 +30,7 @@ if (isset($_POST['submit'])) {
 		$options['priority'] = intval($_POST['priority']);
 	}
 	try {
+		if(empty($options['data']))unset($options['data']);
 		$dns = $adapter->post('zones/' . $_GET['zoneid'] . '/dns_records', $options);
 		$dns = json_decode($dns->getBody());
 		if (isset($dns->result->id)) {
